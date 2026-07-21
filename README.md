@@ -4,7 +4,14 @@ Config for AI coding agents.
 
 > Written for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) but the markdown is agent-agnostic - adapt for any tool that accepts system prompts or instruction files.
 
+## Config
+
+Copy `global/AGENTS.md` into your agent's config directory (e.g. `~/.claude/CLAUDE.md`).
+Fill in the Tech and Domain sections with a high-level description that applies globally (project-specific details belong in each repo's own config).
+
 ## Skills
+
+Symlink the skills you want into your agent's skills directory (e.g. `~/.claude/skills/`).
 
 ### Git
 
@@ -32,10 +39,6 @@ Config for AI coding agents.
 
 ### Third-party
 
-| Skill repo                                   | Description                          |
-|----------------------------------------------|--------------------------------------|
-| [gstack](https://github.com/garrytan/gstack) | Code review, QA, design review, etc. |
-
-### Install
-
-Ask your agent to symlink or copy the skills you want (e.g. into `~/.claude/skills/`).
+| Skill repo                                   | Description                            |
+|----------------------------------------------|----------------------------------------|
+| [gstack](https://github.com/garrytan/gstack) | `/browse`, `/qa`, `/review`, and more. |
