@@ -7,6 +7,9 @@ allowed-tools:
   - Bash
   - Read
   - AskUserQuestion
+  - Artifact
+  - Skill
+  - Write
 ---
 
 ## Instructions
@@ -58,7 +61,13 @@ Given a PR number (passed as `$ARGUMENTS`, or inferred from the current branch),
    - Category (code change / question / discussion)
    - Your recommendation on how to address it
 
-5. **Work through tasks.** Use `AskUserQuestion` if unsure how the user wants to handle a specific comment. For code changes, make the fix. For questions/discussion, draft a reply for the user to review.
+5. **Publish an HTML artifact.** Load the `artifact-design` skill, then build and publish a single-page HTML artifact with:
+   - PR title and number in the heading
+   - Each unresolved comment as a checklist item with: file:line, reviewer, summary, category, and your recommendation
+   - Interactive checkboxes so the user can tick off comments as they address them
+   - A progress counter (e.g. "2 / 7 done") that updates as items are checked
+
+6. **Work through tasks.** Use `AskUserQuestion` if unsure how the user wants to handle a specific comment. For code changes, make the fix. For questions/discussion, draft a reply for the user to review.
 
 ### Rules
 - Include ALL unresolved comments — both human and bot reviewers

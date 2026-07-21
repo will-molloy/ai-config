@@ -4,6 +4,9 @@ allowed-tools:
   - Bash
   - Read
   - Edit
+  - Artifact
+  - Skill
+  - Write
 ---
 
 # Mutation Testing
@@ -68,4 +71,10 @@ Apply these operators, picking candidates that exercise meaningful logic (skip t
 - **#2** (line 55): Removing `cursor.Index++` — tests don't verify ...
 ```
 
-6. For each surviving mutant, briefly explain what test is missing and suggest a test name.
+6. **Publish an HTML artifact.** Load the `artifact-design` skill, then build and publish a single-page HTML artifact with:
+   - Filename and mutation score in the heading
+   - The results table with line, operator, mutation, and result for each mutant
+   - Surviving mutants highlighted, with the explanation and suggested test name
+   - A summary showing kill count and percentage
+
+7. For each surviving mutant, briefly explain what test is missing and suggest a test name.
