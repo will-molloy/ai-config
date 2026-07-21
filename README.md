@@ -4,12 +4,17 @@ Config for AI coding agents.
 
 > Written for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) but the markdown is agent-agnostic - adapt for any tool that accepts system prompts or instruction files.
 
-## Config
+## Global config
+
+### Install
 
 Copy `global/AGENTS.md` into your agent's config directory (e.g. `~/.claude/CLAUDE.md`).
-Fill in the Tech and Domain sections with a high-level description that applies globally (project-specific details belong in each repo's own config).
+
+(Optional) Fill in the Tech and Domain sections with a high-level description that applies globally (project-specific details belong in each repo's own config).
 
 ## Skills
+
+### Install
 
 Symlink the skills you want into your agent's skills directory (e.g. `~/.claude/skills/`).
 
