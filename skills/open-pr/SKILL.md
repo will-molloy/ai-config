@@ -94,5 +94,6 @@ Ticket: <link to ticket>
 - Before creating a PR, grep for TODO comments referencing the current ticket (e.g. `TODO.*PROJ-XXXXX`) and resolve them. TODOs referencing other tickets are fine to leave.
 - When pushing to a branch with an open PR, update the PR description to reflect the latest changes (follow the same PR conventions above)
 - Return the PR URL when done
+- After returning the PR URL, remind the user to run /review and /clean-commits before merging
 - Never push to main/master
 - Always link repos, PRs, issues as markdown links - never bare text references

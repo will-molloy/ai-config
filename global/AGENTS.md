@@ -57,6 +57,7 @@ hierarchies, and exhaustive pattern matching. Separate data from behaviour where
 - Use imperative mood for commit messages and PR titles/descriptions.
 - Branch names: lowercase, ticket-prefixed, no `feature/` prefix (e.g. `ticket-123-short-description`).
 - Keep PR/commit descriptions terse - state what changed, don't restate the ticket's background or problem description; the reviewer can read the ticket.
+- Before merging a PR, run /review and /clean-commits.
 
 ---
 

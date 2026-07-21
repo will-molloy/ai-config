@@ -40,3 +40,6 @@ gh pr list --head "$(git branch --show-current)" --json number --jq '.[0].number
    git push
    gh pr edit <number> --body "..."
    ```
+
+### Rules
+- After editing, remind the user to run /review and /clean-commits before merging (same as `/open-pr`)
