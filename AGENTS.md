@@ -9,6 +9,7 @@ Markdown-only repo - no build, no tests, no dependencies.
 
 ## Rules
 
+- Everything here should be genuinely reusable and battle-tested - no ad-hoc or project-specific stuff.
 - All content must be agent-agnostic - no references to specific AI tools or models.
 - All content must be scrubbed of company-specific references before committing.
 - Skills should cross-reference each other where it avoids duplication (e.g. `/amend` references `/commit` for conventions).
