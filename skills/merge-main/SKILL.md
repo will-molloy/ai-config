@@ -1,9 +1,10 @@
 ---
 name: merge-main
 description: |
-  Update a branch with the latest main. Merges main when the history is clean,
-  or cherry-pick rebases when there are stale commits to exclude (e.g. from squash-merged stacked PRs).
-  Use when asked to "merge main", "fix conflicts", "update branch", or "rebase onto main".
+  Update a branch by merging its base branch (resolved from the PR, defaults to main).
+  Merges when the history is clean, or cherry-pick rebases when there are stale commits
+  to exclude (e.g. from squash-merged stacked PRs).
+  Use when asked to "merge main", "fix conflicts", or "update branch".
 allowed-tools:
   - Bash
   - Read
@@ -13,7 +14,7 @@ allowed-tools:
 
 ## Instructions
 
-Update one or more branches with the latest `origin/main`.
+Update one or more branches with the latest from their base branch.
 
 ### Input
 
@@ -26,23 +27,24 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
 
 ### Per-branch workflow
 
-1. **Fetch and snapshot the pre-merge diff:**
+1. **Resolve the base branch and snapshot the pre-merge diff:**
    ```bash
-   git fetch origin main BRANCH_NAME
+   base=$(gh pr view BRANCH_NAME --json baseRefName --jq '.baseRefName' 2>/dev/null || echo "main")
+   git fetch origin "$base" BRANCH_NAME
    git checkout BRANCH_NAME
-   git diff origin/main...HEAD > /tmp/pre-merge.diff
+   git diff "origin/$base...HEAD" > /tmp/pre-merge.diff
    ```
-   List all commits not on main: `git log --oneline origin/main..HEAD`
-   Identify the ticket prefix from the branch name (e.g. `proj-123-...` → `PROJ-123`).
+   List all commits not on the base: `git log --oneline "origin/$base..HEAD"`
+   Identify the ticket prefix from the branch name (e.g. `proj-123-...` -> `PROJ-123`).
    Check whether all commits match the ticket prefix.
 
 2. **Choose strategy:**
-   - **All commits match the ticket** → simple merge: `git merge origin/main`
-   - **Some commits don't match** (e.g. from a squash-merged base PR) → cherry-pick rebase to keep only this ticket's commits (see step 3b)
+   - **All commits match the ticket** -> simple merge: `git merge "origin/$base"`
+   - **Some commits don't match** (e.g. from a squash-merged base PR) -> cherry-pick rebase to keep only this ticket's commits (see step 3b)
 
 3a. **Simple merge:**
    ```bash
-   git merge origin/main
+   git merge "origin/$base"
    ```
    If conflicts arise, resolve them (see conflict resolution below), then `git commit --no-edit`.
 
@@ -55,7 +57,7 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
 
    Then rebase:
    ```bash
-   git reset --hard origin/main
+   git reset --hard "origin/$base"
    git cherry-pick COMMIT1 COMMIT2 ... # oldest first, only ticket commits
    ```
 
@@ -68,7 +70,7 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
 
 5. **Verify diff is unchanged:**
    ```bash
-   git diff origin/main...HEAD > /tmp/post-merge.diff
+   git diff "origin/$base...HEAD" > /tmp/post-merge.diff
    diff /tmp/pre-merge.diff /tmp/post-merge.diff
    ```
    This MUST be empty. If not, the merge/rebase introduced unintended changes - investigate before pushing.
@@ -81,7 +83,7 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    - After cherry-pick rebase: `git push --force-with-lease --no-verify`
 
 ### Rules
-- **Only resolve conflicts — never modify code beyond what's needed to combine both sides of a conflict**
-- If tests fail after rebase/merge, report the failures but do NOT fix them — that's a separate task
+- **Only resolve conflicts - never modify code beyond what's needed to combine both sides of a conflict**
+- If tests fail after rebase/merge, report the failures but do NOT fix them - that's a separate task
 - If unsure which side of a conflict to take, use `AskUserQuestion`
 - After pushing, switch back to the original branch the user was on

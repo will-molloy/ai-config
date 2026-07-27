@@ -1,8 +1,8 @@
 ---
-name: rebase-main
+name: rebase
 description: |
-  Rebase a stacked PR branch onto the latest main after its base PR was squash-merged.
-  Use when asked to "rebase main", "rebase onto main", or "update stacked PR".
+  Rebase a branch onto its base branch (resolved from the PR, defaults to main).
+  Use when asked to "rebase", "rebase onto main", "update branch", or "update stacked PR".
 allowed-tools:
   - Bash
   - Read
@@ -12,7 +12,7 @@ allowed-tools:
 
 ## Instructions
 
-Rebase one or more stacked PR branches onto `origin/main` after their base PR has been squash-merged.
+Rebase one or more branches onto their base branch.
 
 ### Input
 
@@ -25,48 +25,48 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
 
 ### Per-branch workflow
 
-1. **Fetch and snapshot the pre-rebase diff:**
+1. **Resolve the base branch:**
    ```bash
-   git fetch origin main BRANCH_NAME
-   git checkout BRANCH_NAME
-   git diff origin/main...HEAD > /tmp/pre-rebase.diff
+   base=$(gh pr view BRANCH_NAME --json baseRefName --jq '.baseRefName' 2>/dev/null || echo "main")
    ```
 
-2. **Ensure no unpushed commits:**
+2. **Fetch and snapshot the pre-rebase diff:**
+   ```bash
+   git fetch origin "$base" BRANCH_NAME
+   git checkout BRANCH_NAME
+   git diff "origin/$base...HEAD" > /tmp/pre-rebase.diff
+   ```
+
+3. **Ensure no unpushed commits:**
    ```bash
    git log --oneline origin/BRANCH_NAME..HEAD
    ```
    If there are unpushed commits, push them first (`git push --no-verify`) before proceeding.
 
-3. **Rebase:**
+4. **Rebase:**
    ```bash
-   git rebase origin/main
+   git rebase "origin/$base"
    ```
 
-4. **Conflict resolution:**
+5. **Conflict resolution:**
    - Read each conflicted file to understand both sides
    - Resolve by choosing the correct side or combining changes
    - Stage resolved files with `git add`
    - Continue with `git rebase --continue`
 
-5. **Verify diff is unchanged:**
+6. **Verify diff is unchanged:**
    ```bash
-   git diff origin/main...HEAD > /tmp/post-rebase.diff
+   git diff "origin/$base...HEAD" > /tmp/post-rebase.diff
    diff /tmp/pre-rebase.diff /tmp/post-rebase.diff
    ```
    This MUST be empty. If not, the rebase introduced unintended changes - investigate before pushing.
 
-6. **Verify build:**
+7. **Verify build:**
    Build and run tests using the repo's standard commands (check README/Makefile for the right invocations).
 
-7. **Push:**
+8. **Push:**
    ```bash
    git push --force-with-lease --no-verify
-   ```
-
-8. **Update PR base branch:**
-   ```bash
-   gh pr edit BRANCH_NAME --base main
    ```
 
 ### Rules
