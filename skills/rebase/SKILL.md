@@ -57,6 +57,7 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    ```
 
 5. **Conflict resolution:**
+   - Review the base branch's recent commits to understand what changed and why
    - Read each conflicted file to understand both sides
    - Resolve by choosing the correct side or combining changes
    - Stage resolved files with `git add`
