@@ -47,12 +47,19 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    ```bash
    git rebase "origin/$base"
    ```
+   If the rebase produces conflicts from stale commits (e.g. from a squash-merged base PR), abort and cherry-pick instead:
+   ```bash
+   git rebase --abort
+   git reset --hard "origin/$base"
+   git cherry-pick COMMIT1 COMMIT2 ... # oldest first, only this ticket's commits
+   ```
 
 5. **Conflict resolution:**
    - Read each conflicted file to understand both sides
    - Resolve by choosing the correct side or combining changes
    - Stage resolved files with `git add`
-   - Continue with `git rebase --continue`
+   - For rebase: continue with `git rebase --continue`
+   - For cherry-pick: continue with `git cherry-pick --continue`
 
 6. **Verify diff is unchanged:**
    ```bash
