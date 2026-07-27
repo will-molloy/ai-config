@@ -63,8 +63,7 @@ The description covers the **final diff against the base branch** - what the cod
 Lead with a one-line summary of the behavioural change - what the user/system sees differently.
 Then a short bullet list of the key things the reviewer needs to know.
 
-**Only describe behavioural changes** - things that change what the system does.
-Don't list implementation details, trivial refactors, or anything obvious from the diff.
+Don't list trivial details obvious from the diff.
 The reviewer can read the code; the description tells them *what changed and why*, not *how*.
 
 One list of bullets under "Proposed changes" (or whatever the repo template calls it). Sub-bullets are fine to group related detail under a top-level bullet - keep nesting to one level.
