@@ -65,7 +65,7 @@ Then a short bullet list of the key things the reviewer needs to know.
 Don't list implementation details, trivial refactors, or anything obvious from the diff.
 The reviewer can read the code; the description tells them *what changed and why*, not *how*.
 
-No separate "Changes" / "Refactoring" sections. Just one list of bullets under "Proposed changes" (or whatever the repo template calls it). Sub bullets are fine to group related detail under a top-level bullet - keep nesting to one level.
+One list of bullets under "Proposed changes" (or whatever the repo template calls it). Sub-bullets are fine to group related detail under a top-level bullet - keep nesting to one level.
 
 For stacked PRs, describe only what THIS branch adds on top of the base - not what the base PR already did.
 
