@@ -43,15 +43,17 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    ```
    If there are unpushed commits, push them first (`git push --no-verify`) before proceeding.
 
-4. **Rebase:**
+4a. **Rebase:**
    ```bash
    git rebase "origin/$base"
    ```
-   If the rebase produces conflicts from stale commits (e.g. from a squash-merged base PR), abort and cherry-pick instead:
+   If the rebase produces conflicts from stale commits, abort and fall back to 4b.
+
+4b. **Cherry-pick rebase:**
    ```bash
    git rebase --abort
    git reset --hard "origin/$base"
-   git cherry-pick COMMIT1 COMMIT2 ... # oldest first, only this ticket's commits
+   git cherry-pick COMMIT1 COMMIT2 ... # oldest first, only this branch's commits
    ```
 
 5. **Conflict resolution:**
@@ -68,16 +70,12 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    ```
    This MUST be empty. If not, the rebase introduced unintended changes - investigate before pushing.
 
-7. **Verify build:**
-   Build and run tests using the repo's standard commands (check README/Makefile for the right invocations).
-
-8. **Push:**
+7. **Push:**
    ```bash
    git push --force-with-lease --no-verify
    ```
 
 ### Rules
 - **Only resolve conflicts - never modify code beyond what's needed to combine both sides of a conflict**
-- If tests fail after rebase, report the failures but do NOT fix them - that's a separate task
 - If unsure which side of a conflict to take, use `AskUserQuestion`
 - After pushing, switch back to the original branch the user was on

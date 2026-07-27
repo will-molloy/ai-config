@@ -60,16 +60,9 @@ Create a draft PR for the current branch.
 
 The description covers the **final diff against main** - what the code looks like NOW, not the incremental development history. Never describe intermediate steps ("collapse X into Y", "replace X with Y" when Y is the only thing that exists in the diff).
 
-#### Changes vs Refactoring
+#### Changes
 
-Group bullets under **"Changes"** and **"Refactoring"** sections. The distinction is strict:
-
-- **Changes** = net-new functionality that didn't exist before (new endpoints, new models, new packages). If you deleted it from the diff, the feature wouldn't work.
-- **Refactoring** = restructuring, renaming, improving existing code (splitting controllers, adding logging, adding docs, renaming models, improving error handling). If you deleted it from the diff, the old code would still work.
-
-Do NOT put refactoring in Changes. Logging, error handling improvements, XML docs, extension methods - these are all refactoring. Extracting existing code into smaller components/hooks is refactoring, not a new feature.
-
-If the refactors need context (e.g. they were done as part of a prior approach), add a short intro line before the bullets explaining why they exist in this PR.
+Group everything under a single **"Changes"** section - no sub-headings. One bullet per change, in imperative commit style. Use sub-bullets (nested, indented) where a change needs supporting detail - don't split into separate sections for it.
 
 #### Tests
 
@@ -84,10 +77,7 @@ Ticket: <link to ticket>
 <1-2 sentence summary>
 
 ## Changes
-<Subsections describing what changed, grouped logically>
-
-## Refactoring
-<If applicable>
+<Bullets describing what changed - use sub-bullets for supporting detail>
 ```
 
 ### Rules
