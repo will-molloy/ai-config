@@ -54,28 +54,24 @@ Create a draft PR for the current branch.
 - Link any related spec alongside the ticket URL if one exists
 - Keep shared content AI-agnostic - don't mention specific tools
 - For stacked PRs, add a blockquote after proposed changes:
-  > **Stacked PR** - this builds on [#NNN](url), which should be reviewed and merged first. After #NNN is squash-merged, this branch will be rebased onto `main`.
+  > **Stacked PR** - this builds on [#NNN](url), which should be reviewed and merged first. After #NNN is merged, this branch will be rebased onto `main`.
 
 ### Description structure (critical - read carefully)
 
-The description covers the **final diff against main** - what the code looks like NOW, not the incremental development history. Never describe intermediate steps ("collapse X into Y", "replace X with Y" when Y is the only thing that exists in the diff).
+Lead with a one-line summary of the behavioural change - what the user/system sees differently.
+Then a short bullet list of the key things the reviewer needs to know.
 
-#### Changes vs Refactoring
+**Only describe behavioural changes** - things that change what the system does.
+Don't list implementation details, trivial refactors, or anything obvious from the diff.
+The reviewer can read the code; the description tells them *what changed and why*, not *how*.
 
-Group bullets under **"Changes"** and **"Refactoring"** sections. The distinction is strict:
+No separate "Changes" / "Refactoring" sections. Just one list of bullets under "Proposed changes" (or whatever the repo template calls it). Sub bullets are fine to group related detail under a top-level bullet - keep nesting to one level.
 
-- **Changes** = net-new functionality that didn't exist before (new endpoints, new models, new packages). If you deleted it from the diff, the feature wouldn't work.
-- **Refactoring** = restructuring, renaming, improving existing code (splitting controllers, adding logging, adding docs, renaming models, improving error handling). If you deleted it from the diff, the old code would still work.
-
-Do NOT put refactoring in Changes. Logging, error handling improvements, XML docs, extension methods - these are all refactoring. Extracting existing code into smaller components/hooks is refactoring, not a new feature.
-
-If the refactors need context (e.g. they were done as part of a prior approach), add a short intro line before the bullets explaining why they exist in this PR.
+For stacked PRs, describe only what THIS branch adds on top of the base - not what the base PR already did.
 
 #### Tests
 
 Omit the Tests section unless the PR is primarily about tests. Test changes are implied by code changes - listing them separately is noise.
-
-If you do include a Tests section, keep it **high level** - one bullet per test project or area. Never list individual test names, counts, or specific assertions.
 
 ### Fallback format (when no PR template exists)
 ```
@@ -83,11 +79,7 @@ Ticket: <link to ticket>
 
 <1-2 sentence summary>
 
-## Changes
-<Subsections describing what changed, grouped logically>
-
-## Refactoring
-<If applicable>
+- Bullet points covering behavioural changes only
 ```
 
 ### Rules
