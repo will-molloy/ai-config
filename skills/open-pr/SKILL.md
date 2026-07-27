@@ -58,6 +58,8 @@ Create a draft PR for the current branch.
 
 ### Description structure (critical - read carefully)
 
+The description covers the **final diff against the base branch** - what the code looks like NOW, not the incremental development history. Never describe intermediate steps ("collapse X into Y", "replace X with Y" when Y is the only thing that exists in the diff).
+
 Lead with a one-line summary of the behavioural change - what the user/system sees differently.
 Then a short bullet list of the key things the reviewer needs to know.
 
@@ -79,7 +81,8 @@ Ticket: <link to ticket>
 
 <1-2 sentence summary>
 
-- Bullet points covering behavioural changes only
+## Proposed changes
+- <bullets>
 ```
 
 ### Rules
