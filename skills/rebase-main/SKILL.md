@@ -25,10 +25,11 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
 
 ### Per-branch workflow
 
-1. **Fetch and checkout:**
+1. **Fetch and snapshot the pre-rebase diff:**
    ```bash
    git fetch origin main BRANCH_NAME
    git checkout BRANCH_NAME
+   git diff origin/main...HEAD > /tmp/pre-rebase.diff
    ```
 
 2. **Ensure no unpushed commits:**
@@ -48,15 +49,22 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    - Stage resolved files with `git add`
    - Continue with `git rebase --continue`
 
-5. **Verify:**
+5. **Verify diff is unchanged:**
+   ```bash
+   git diff origin/main...HEAD > /tmp/post-rebase.diff
+   diff /tmp/pre-rebase.diff /tmp/post-rebase.diff
+   ```
+   This MUST be empty. If not, the rebase introduced unintended changes - investigate before pushing.
+
+6. **Verify build:**
    Build and run tests using the repo's standard commands (check README/Makefile for the right invocations).
 
-6. **Push:**
+7. **Push:**
    ```bash
    git push --force-with-lease --no-verify
    ```
 
-7. **Update PR base branch:**
+8. **Update PR base branch:**
    ```bash
    gh pr edit BRANCH_NAME --base main
    ```

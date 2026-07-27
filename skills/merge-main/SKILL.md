@@ -26,10 +26,11 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
 
 ### Per-branch workflow
 
-1. **Fetch and identify commits:**
+1. **Fetch and snapshot the pre-merge diff:**
    ```bash
    git fetch origin main BRANCH_NAME
    git checkout BRANCH_NAME
+   git diff origin/main...HEAD > /tmp/pre-merge.diff
    ```
    List all commits not on main: `git log --oneline origin/main..HEAD`
    Identify the ticket prefix from the branch name (e.g. `proj-123-...` → `PROJ-123`).
@@ -65,10 +66,17 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    - For merge: complete with `git commit --no-edit`
    - For cherry-pick: continue with `git cherry-pick --continue`
 
-5. **Verify:**
+5. **Verify diff is unchanged:**
+   ```bash
+   git diff origin/main...HEAD > /tmp/post-merge.diff
+   diff /tmp/pre-merge.diff /tmp/post-merge.diff
+   ```
+   This MUST be empty. If not, the merge/rebase introduced unintended changes - investigate before pushing.
+
+6. **Verify build:**
    Build and run tests using the repo's standard commands (check README/Makefile for the right invocations).
 
-6. **Push:**
+7. **Push:**
    - After merge: `git push --no-verify`
    - After cherry-pick rebase: `git push --force-with-lease --no-verify`
 
