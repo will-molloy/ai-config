@@ -25,7 +25,7 @@ Symlink the skills you want into your agent's skills directory (e.g. `~/.claude/
 | `/commit`        | Stage all changes and commit with a detailed message     |
 | `/amend`         | Stage all changes and amend the previous commit          |
 | `/push`          | Stage, commit, and push in one step                      |
-| `/merge-main`    | Merge or cherry-pick rebase main into the current branch |
+| `/rebase`        | Rebase a branch onto its base branch                     |
 | `/clean-commits` | Rewrite branch history into logical commits              |
 
 ### Pull Requests
