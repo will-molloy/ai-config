@@ -53,7 +53,7 @@ Create a draft PR for the current branch.
 - Link tickets as markdown links where possible
 - Link any related spec alongside the ticket URL if one exists
 - Keep shared content AI-agnostic - don't mention specific tools
-- For stacked PRs, set `--base` to the parent branch - GitHub surfaces the stack itself, so don't add a note about it to the description
+- For stacked PRs, set `--base` to the parent branch, which is how GitHub surfaces the stack
 
 ### Description structure (critical - read carefully)
 
