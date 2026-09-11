@@ -2,7 +2,7 @@
 
 Config for AI coding agents.
 
-> Written for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) but the markdown is agent-agnostic - adapt for any tool that accepts system prompts or instruction files.
+> Written for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Most of it is plain markdown, so it adapts to any tool that accepts system prompts or instruction files - expect to swap a few tool and slash-command names.
 
 ## Global config
 
