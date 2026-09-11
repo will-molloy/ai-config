@@ -58,6 +58,17 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
 
 5. **Conflict resolution:**
    - Review the base branch's recent commits to understand what changed and why
+   - **Generated files: never hand-resolve.** If a conflicted file is generated (lock files,
+     build output, snapshots, generated clients/protos/schemas), take the base branch's version
+     and re-run the generator, then stage the result:
+     ```bash
+     git checkout --ours PATH   # --ours is the base branch during rebase and cherry-pick
+     <regenerate>               # the repo's dependency install or codegen script
+     git add PATH
+     ```
+     Identify the generator from the file's header comment, the repo's README/AGENTS.md, or its
+     package scripts. If the generator can't be identified or it fails, stop and use
+     `AskUserQuestion` - do not hand-merge the file.
    - Read each conflicted file to understand both sides
    - Resolve by choosing the correct side or combining changes
    - Stage resolved files with `git add`
@@ -69,7 +80,11 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    git diff "origin/$base...HEAD" > /tmp/post-rebase.diff
    diff /tmp/pre-rebase.diff /tmp/post-rebase.diff
    ```
-   This MUST be empty. If not, the rebase introduced unintended changes - investigate before pushing.
+   This MUST be empty, except for files regenerated in step 5.
+   Inspect any generated-file difference to confirm it looks like generator output
+   (e.g. a dependency resolved to the base branch's newer pin), not a code change.
+   Any difference in a hand-written file means the rebase introduced unintended changes -
+   investigate before pushing.
 
 7. **Push:**
    ```bash
@@ -77,6 +92,7 @@ gh pr view PR_NUMBER --json headRefName --jq '.headRefName'
    ```
 
 ### Rules
-- **Only resolve conflicts - never modify code beyond what's needed to combine both sides of a conflict**
+- **Only resolve conflicts - never modify code beyond what's needed to combine both sides of a conflict**,
+  except that generated files are resolved by regeneration, not by editing
 - If unsure which side of a conflict to take, use `AskUserQuestion`
 - After pushing, switch back to the original branch the user was on
