@@ -35,6 +35,7 @@ Symlink the skills you want into your agent's skills directory (e.g. `~/.claude/
 | `/open-pr`       | Create a draft PR for the current branch                 |
 | `/update-pr`     | Update an existing PR description to match the branch    |
 | `/pr-comments`   | Review unresolved PR comments and create a task list     |
+| `/check-review`  | Sanity-check your PR review for wrong claims and misses  |
 
 ### Testing
 
