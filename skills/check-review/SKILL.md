@@ -26,7 +26,7 @@ is missed. Output goes to chat only. Never post, edit or submit the review.
 3. Check each comment:
    - **Correct?** The claim matches the code.
    - **Clear?** The comment says what to change and why, with no wrong or needless hedges.
-4. Find the important issues the user's review misses. Skip nits.
+4. Find the issues the user's review misses.
    - If the conversation already holds an agent review of this PR, compare against that
      instead of reviewing again. Re-check it if the PR has new commits since.
    - Otherwise, review the diff independently.
