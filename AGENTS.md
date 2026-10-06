@@ -13,5 +13,6 @@ Markdown-only repo - no build, no tests, no dependencies.
 - Written primarily for Claude Code. Keep it high level - describe the intent rather than
   naming a specific tool, language, or MCP server, unless the specific is the point.
 - All content must be scrubbed of company-specific references before committing.
+- Keep content generic. Don't use examples from the session or project that prompted the change.
 - Skills should cross-reference each other where it avoids duplication (e.g. `/amend` references `/commit` for conventions).
 - You may need `gh auth switch` before pushing.
