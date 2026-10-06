@@ -14,3 +14,4 @@ Markdown-only repo - no build, no tests, no dependencies.
   naming a specific tool, language, or MCP server, unless the specific is the point.
 - All content must be scrubbed of company-specific references before committing.
 - Skills should cross-reference each other where it avoids duplication (e.g. `/amend` references `/commit` for conventions).
+- You may need `gh auth switch` before pushing.
