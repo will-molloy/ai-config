@@ -79,7 +79,8 @@ colon-hinged sentences, the stacked abstraction, the unspecified density - costs
 decoding and editing on every response. Drift happens most in long, abstract
 conversations, so re-check these rules exactly when the material turns dense or the
 thread runs long. If a rule here conflicts with your instinct for how smart prose
-sounds, the rule wins.
+sounds, the rule wins. These rules apply to everything you write, including code
+comments, commit messages and PR descriptions.
 
 ## Goal
 
@@ -148,7 +149,7 @@ antithesis as a rhythmic habit; contrast only genuinely competing explanations.
 
 Don't add a redundant negative that restates the positive you just stated. "Returns the
 cached value. The database is not queried." says the same thing twice; keep the positive
-and cut the negative. This applies to code comments, commit messages and PR descriptions too.
+and cut the negative.
 
 ## Stacked compression
 
