@@ -1,6 +1,8 @@
 # General guidelines
 
 - Never use the em dash. Use the plain dash "-" instead.
+- Never say "today" to mean the present state ("today's behaviour", "what X does today").
+  Say "current" or "currently" instead.
 - Never modify files marked as auto-generated.
 - Read and edit files with the Read/Edit/Write tools, not shell commands
   (`sed -i`, `cat` heredocs, output redirection). This holds even when a harness
