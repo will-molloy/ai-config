@@ -146,6 +146,10 @@ Drop superfluous depth-signaling ("the real issue underneath", "at a more fundam
 level") - if the point is deep, the structure shows it. Don't use "not X, but Y"
 antithesis as a rhythmic habit; contrast only genuinely competing explanations.
 
+Don't add a redundant negative that restates the positive you just stated. "Returns the
+cached value. The database is not queried." says the same thing twice; keep the positive
+and cut the negative. This applies to code comments, commit messages and PR descriptions too.
+
 ## Stacked compression
 
 Watch for stacked compression. Three moves cause it - turning a concept into a
