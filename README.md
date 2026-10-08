@@ -43,6 +43,12 @@ Symlink the skills you want into your agent's skills directory (e.g. `~/.claude/
 |------------------|----------------------------------------------------------|
 | `/mutation-test` | Run mutation testing to find test gaps                   |
 
+### Writing
+
+| Skill            | Description                                              |
+|------------------|----------------------------------------------------------|
+| `/deslop`        | Rewrite agent-written prose in plain words               |
+
 ### Third-party
 
 | Skill repo                                   | Description                            |
