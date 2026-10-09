@@ -37,10 +37,11 @@ Symlink the skills you want into your agent's skills directory (e.g. `~/.claude/
 | `/pr-comments`   | Review unresolved PR comments and create a task list     |
 | `/check-review`  | Sanity-check your PR review for wrong claims and misses  |
 
-### Testing
+### Code quality
 
 | Skill            | Description                                              |
 |------------------|----------------------------------------------------------|
+| `/clean-code`    | Clean up a branch's changes so they read easily          |
 | `/mutation-test` | Run mutation testing to find test gaps                   |
 
 ### Third-party
