@@ -69,6 +69,10 @@ One list of bullets under "Proposed changes" (or whatever the repo template call
 
 For stacked PRs, describe only what THIS branch adds on top of the base - not what the base PR already did.
 
+#### Notes
+
+Put what the reviewer should know but the diff doesn't do under a `## Notes` section, after "Proposed changes": caveats, rollout steps, dependencies on other PRs, and follow-ups. Use short bullets, and omit the section when there's nothing to say. Add it even when the repo template has no such section.
+
 #### Tests
 
 Omit the Tests section unless the PR is primarily about tests. Test changes are implied by code changes - listing them separately is noise.
@@ -81,6 +85,9 @@ Ticket: <link to ticket>
 
 ## Proposed changes
 - <bullets>
+
+## Notes
+- <bullets, or omit the section>
 ```
 
 ### Rules
