@@ -52,7 +52,6 @@ Create a draft PR for the current branch.
 - Write description bullets in imperative commit style - e.g. "Add X", "Remove Y", "Replace X with Y" - not passive meta-commentary like "Consolidated X" or "Changes were made to Y"
 - Link tickets as markdown links where possible
 - Link any related spec alongside the ticket URL if one exists
-- Keep shared content AI-agnostic - don't mention specific tools
 - For stacked PRs, set `--base` to the parent branch, which is how GitHub surfaces the stack
 
 ### Description structure (critical - read carefully)
