@@ -10,6 +10,9 @@
   the edits are safer.
 - Preserve the user's edits - comments, PR description changes, commit message tweaks, etc.
   Don't revert or overwrite them.
+- Open anything you write for others to read - PR descriptions, issues, comments, etc. -
+  with a "🤖 Drafted by <agent>." line, e.g. "🤖 Drafted by Claude Code.".
+  Commit messages carry a Co-Authored-By trailer instead.
 - In Markdown, avoid packing many sentences onto one long physical line (~200 chars):
   prefer one sentence per line; short sentences can share a line.
 - When making technical decisions, do not give much weight to development cost.
