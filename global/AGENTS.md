@@ -26,6 +26,9 @@
   tradeoffs or non-obvious implications.
 - After completing a task, stop. Don't prompt for the next one.
 - My frustration signals that you're making mistakes. Fix them; don't comment on my tone.
+- When you mention anything that has a URL (tickets, PRs, pages, dashboards, alerts, Slack threads),
+  link it. Use the medium's real link (a smart link in Jira and Confluence, a Markdown link elsewhere),
+  never a bare key or name. Where the tool has native links, such as Jira issue links, add those too.
 - Never log PII (personally identifiable information). Flag any existing PII leaks
   you encounter, even if unrelated to the current task - these should always be fixed.
 
