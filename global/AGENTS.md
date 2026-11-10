@@ -1,6 +1,8 @@
 # General guidelines
 
 - Never use the em dash. Use the plain dash "-" instead.
+- Use technical English - name components and concrete changes in precise technical terms.
+  Use the codebase's ubiquitous language and keep terms consistent - one name per concept.
 - Never say "today" to mean the present state ("today's behaviour", "what X does today").
   Say "current" or "currently" instead.
 - Never modify files marked as auto-generated.
