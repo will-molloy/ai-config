@@ -55,6 +55,8 @@ hierarchies, and exhaustive pattern matching. Separate data from behaviour where
   discriminated unions for sum types, exhaustive switches over them.
 - Default types to closed; only open for extension when it's an intentional design choice.
 - Let the type system enforce constraints rather than runtime validation where possible.
+- Doc comments state the contract. Don't restate the implementation, so the doc stays true
+  when it changes.
 
 # Testing
 
